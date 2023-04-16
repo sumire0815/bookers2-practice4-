@@ -1,14 +1,18 @@
-<div class = bookers>
-<div class ="book">
-  <div class ="info">
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    
+<div class='col-md-3'>
    <h2>User info</h2>
    <tr><%= image_tag @user.get_profile_image("100x100") %></tr>
-   <p>name <%= current_user.name %></p>
+  <p>name <%= current_user.name %></p>
   <tr>
 	  <th>introduction</th>
 	  <th><%= current_user.introduction %></th>
   </tr>
-  <p><%= link_to "edit", edit_user_path(current_user.id) %></p>
+  <div class ='row'>
+  <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
   </div>
 
 <%= form_with model: @book do |f| %>
@@ -25,38 +29,38 @@
   </div>
 <% end %>
 
-
 <div class="field">
-  <div class="block">
+<div class="form-group">
   <%= f.label :Title %>
-  <%= f.text_field :title %>
-  </div>
-  <div class="block">
-  <%= f.label :Opinion %>
-  <%= f.text_area :body %>
-  </div>
-  <%= f.submit 'Create Book' %>
+    <%= f.text_field :title, class: 'form-control book_title' %>
 </div>
+<div class="form-group">
+  <%= f.label :Opinion %>
+    <%= f.text_area :body, class: 'form-control book_body' %>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
 <% end %>
 </div>
+</div>
+</div>
 
-<div class="users">
-<h2>Users</h2>
-<table>
-<thead>
-  <tr>
-    <th>image</th>
-    <th>name</th>
-    <th colspan="3"></th>
-  </tr>
-</thead>
-
+<div class='col-md-8 offset-md-1'>
+ <h2>Users</h2>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 <tbody>
   <% @users.each do |user| %>
     <tr>
       <td><%= image_tag user.get_profile_image("100x100") %></td>
       <td><%= user.name %></td>
-      <td><%= link_to "show", user_path(user.id) %></td>
+      <td><%= link_to "show", user_path(user.id), class: "user_#{user.id}" %></td>
     </tr>
   <% end %>
 </tbody>

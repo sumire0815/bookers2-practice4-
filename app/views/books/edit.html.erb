@@ -1,3 +1,6 @@
+<div class='container'>
+<div class='row'>
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 <h1>Editing Book</h1>
 
 <%= form_with model: @book do |f| %>
@@ -13,17 +16,16 @@
 <% end %>
 
 <div class="field">
-  <div class="block">
+<div class="form-group">
   <%= f.label :title %>
-  <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control book_title' %>
   </div>
-  <div class="block">
+<div class="form-group">
   <%= f.label :opinion %>
-  <%= f.text_area :body %>
+    <%= f.text_area :body, class: 'form-control book_body' %>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
   </div>
-  
-  <%= f.submit 'Update Book' %>
-</div>
 
  <span>
 <%= link_to 'Show', @book, class: "show_#{@book.id}" %> |
