@@ -7,6 +7,8 @@ devise_for :users, controllers: {   registrations: 'users/registrations',
 
   get "home/about"=>"homes#about"
   resources :users
-  resources :books
+  resources :books, only: [:new, :create, :index, :edit, :show, :destroy] do
+    resource :favorites, only: [:create, :destroy]
+  end
   
 end
